@@ -12,9 +12,9 @@ import (
 	"github.com/apernet/hysteria/core/server"
 )
 
-var _ server.Authenticator = &V2boardApiProvider{}
+var _ server.Authenticator = &V2RaySocksApiProvider{}
 
-type V2boardApiProvider struct {
+type V2RaySocksApiProvider struct {
 	Client *http.Client
 	URL    string
 }
@@ -76,7 +76,7 @@ func UpdateUsers(url string, interval time.Duration) {
 }
 
 // 验证代码
-func (v *V2boardApiProvider) Authenticate(addr net.Addr, auth string, tx uint64) (ok bool, id string) {
+func (v *V2RaySocksApiProvider) Authenticate(addr net.Addr, auth string, tx uint64) (ok bool, id string) {
 
 	// 获取判断连接用户是否在用户列表内
 	lock.Lock()

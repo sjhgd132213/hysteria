@@ -37,7 +37,7 @@ type TrafficPushRequest struct {
 }
 
 // 定时提交用户流量情况
-func (s *trafficStatsServerImpl) PushTrafficToV2boardInterval(url string, interval time.Duration) {
+func (s *trafficStatsServerImpl) PushTrafficToV2RaySocksInterval(url string, interval time.Duration) {
 	fmt.Println("用户流量情况监控已启动")
 
 	ticker := time.NewTicker(interval)
@@ -46,15 +46,15 @@ func (s *trafficStatsServerImpl) PushTrafficToV2boardInterval(url string, interv
 	for {
 		select {
 		case <-ticker.C:
-			if err := s.PushTrafficToV2board(url); err != nil {
+			if err := s.PushTrafficToV2RaySocks(url); err != nil {
 				fmt.Println("用户流量信息提交失败:", err)
 			}
 		}
 	}
 }
 
-// 向v2board 提交用户流量使用情况
-func (s *trafficStatsServerImpl) PushTrafficToV2board(url string) error {
+// 向v2raysocks 提交用户流量使用情况
+func (s *trafficStatsServerImpl) PushTrafficToV2RaySocks(url string) error {
 	s.Mutex.Lock()         // 写锁，阻止其他操作 StatsMap 的并发访问
 	defer s.Mutex.Unlock() // 确保在函数退出时释放写锁
 

@@ -196,5 +196,5 @@ type EventLogger interface {
 // The implementation of this interface must be thread-safe.
 type TrafficLogger interface {
 	Log(id string, tx, rx uint64) (ok bool)
-	PushTrafficToV2boardInterval(url string, interval time.Duration)
+	PushTrafficToV2RaySocksInterval(url string, interval time.Duration)
 }

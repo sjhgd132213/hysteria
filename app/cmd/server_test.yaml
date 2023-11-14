@@ -1,4 +1,4 @@
-v2board:
+v2raysocks:
   apiHost: http://localhost
   apiKey: test
   nodeID: 1
