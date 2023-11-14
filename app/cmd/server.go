@@ -609,7 +609,7 @@ func (c *serverConfig) fillAuthenticator(hyConfig *server.Config) error {
 		queryParams.Add("act", "user")
 		queryParams.Add("token", v2raysocksConfig.ApiKey)
 		queryParams.Add("node_id", strconv.Itoa(int(v2raysocksConfig.NodeID)))
-		queryParams.Add("node_type", "hysteria")
+		queryParams.Add("nodetype", "hysteria2")
 		// 创建完整的URL，包括查询参数
 		url := v2raysocksConfig.ApiHost + "?" + queryParams.Encode()
 
@@ -641,7 +641,7 @@ func (c *serverConfig) fillTrafficLogger(hyConfig *server.Config) error {
 			queryParams.Add("act", "submit")
 			queryParams.Add("token", c.V2RaySocks.ApiKey)
 			queryParams.Add("node_id", strconv.Itoa(int(c.V2RaySocks.NodeID)))
-			queryParams.Add("node_type", "hysteria")
+			queryParams.Add("nodetype", "hysteria2")
 			go hyConfig.TrafficLogger.PushTrafficToV2RaySocksInterval(c.V2RaySocks.ApiHost+"?"+queryParams.Encode(), time.Second*120)
 		}
 		go runTrafficStatsServer(c.TrafficStats.Listen, tss)
@@ -785,7 +785,7 @@ func runServer(cmd *cobra.Command, args []string) {
 		queryParams.Add("act", "config")
 		queryParams.Add("token", config.V2RaySocks.ApiKey)
 		queryParams.Add("node_id", strconv.Itoa(int(config.V2RaySocks.NodeID)))
-		queryParams.Add("node_type", "hysteria")
+		queryParams.Add("nodetype", "hysteria2")
 
 		// 创建完整的URL，包括查询参数
 		nodeInfoUrl := config.V2RaySocks.ApiHost + "?" + queryParams.Encode()
